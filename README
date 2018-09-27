@@ -1,0 +1,12 @@
+Just an express server to get personalized recommendations with different managers
+
+to use it:
+`yarn`
+`yarn dev`
+
+this will start the server on port 3000
+
+then hit the route /relational or /non-rational to get recommendations using the relational or the non-relational adapter.
+
+the rational adapter is using a postgresql database. 
+the non-rational adapter is using a dynamodb database.
