@@ -1,14 +1,10 @@
 module.exports.getPersonalizedRecommendations = async function(productId, memberId, weigthPercentage) {
 
-	const PID_TABLE = require('./PidTable');
-	const MID_TABLE = require('./MidTable');
-
-	const relatedProducts = PID_TABLE[1].related;;
-	const preferences = MID_TABLE[11].preferences;
+	const { relatedProducts, preferences } = await getLocalDataWithAfterArbitroryTimeout();
 
 	let result = relatedProducts.map(prod => {
 
-		const prefObj = preferences.find( pref => {
+		const prefObj = preferences. ( pref => {
 			return pref.prefId === prod.prefId;
 		});
 
@@ -28,25 +24,22 @@ module.exports.getPersonalizedRecommendations = async function(productId, member
 
 }
 
-function getItemPromisified(queryInput){
+function getLocalDataWithAfterArbitroryTimeout(){
 
-	return new Promise((resolve, reject) => {
+	return new Promise((resolve,reject) => {
 
-		this.client.getItem(queryInput, (err, data) => {
+	const PID_TABLE = require('./PidTable');
+	const MID_TABLE = require('./MidTable');
 
-			if (err != null) {
+	const relatedProducts = PID_TABLE[1].related;;
+	const preferences = MID_TABLE[11].preferences;
+	
+	setTimeout(function() {
+		resolve({
+			relatedProducts, preferences
+		})
+	}, 25);
 
-				reject (err);
-
-				return;
-			}
-
-			resolve(data);
-
-			return;
-
-		});
-
-	});
+	})
 
 }

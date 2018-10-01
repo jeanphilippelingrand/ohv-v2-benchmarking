@@ -7,7 +7,6 @@ const credentials = {
 	accessKeyId: '',
 	secretAccessKey: ''
 }
-const alpha = 0.5;
 
 module.exports.getPersonalizedRecommendations = async function(productId, memberId, weigthPercentage) {
 
@@ -56,7 +55,6 @@ module.exports.getPersonalizedRecommendations = async function(productId, member
 
 	});
 
-	// descending sort
 	result.sort((prodA, prodB) => (prodB.score - prodA.score));
 
 	return result;

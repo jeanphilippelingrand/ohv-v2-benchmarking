@@ -8,7 +8,7 @@ const managers = {
 };
 
 app.get('/:manager', async function(req, res){
-  const result = await managers[req.params.manager].getPersonalizedRecommendations(1,1,0.5);
+  const result = await managers[req.params.manager].getPersonalizedRecommendations(2035723,1,0.5);
   res.json(result);
 });
 
